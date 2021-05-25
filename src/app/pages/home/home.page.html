@@ -4,6 +4,11 @@
 
 <app-page-content-wrapper>
   <main>
-    <section></section>
+    <section>
+      <span> {{loading$ | async}} </span>
+      <pre>
+        {{news$ | async | json}}
+      </pre>
+    </section>
   </main>
 </app-page-content-wrapper>

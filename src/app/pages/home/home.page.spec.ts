@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { PageContentWrapperModule } from 'src/app/components/page-content-wrapper/page-content-wrapper.module';
+import { PageHeaderWrapperModule } from 'src/app/components/page-header-wrapper/page-header-wrapper.module';
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {
@@ -8,9 +9,9 @@ describe('HomePage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomePage ]
-    })
-    .compileComponents();
+      declarations: [HomePage],
+      imports: [PageHeaderWrapperModule, PageContentWrapperModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
