@@ -36,11 +36,8 @@ export class NewsState {
   add({ patchState }: StateContext<NewsStateModel>): Observable<News[]> {
     patchState({ loading: true });
 
-    return this.newsService.list<News[]>().pipe(
-      tap((news) => {
-        console.log('xxxxxxxxxxxxxxxx', news);
-        patchState({ news, loading: false });
-      })
-    );
+    return this.newsService
+      .list<News[]>()
+      .pipe(tap((news) => patchState({ news, loading: false })));
   }
 }
