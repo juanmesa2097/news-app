@@ -1,19 +1,63 @@
-<!-- form -->
 <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-  <!-- field -->
   <div class="mt-5">
-    <tui-input formControlName="email">
-      Email
-      <span class="tui-required"></span>
+    <tui-input formControlName="name">
+      Nombre <span class="tui-required"></span>
     </tui-input>
+    <tui-field-error formControlName="name"></tui-field-error>
+  </div>
+
+  <div class="mt-5">
+    <tui-input formControlName="familyName">
+      Apellido <span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error formControlName="familyName"></tui-field-error>
+  </div>
+
+  <div class="mt-5">
+    <tui-input formControlName="email"> Email </tui-input>
     <tui-field-error formControlName="email"></tui-field-error>
   </div>
-  <!-- /field -->
 
-  <!-- button -->
-  <button tuiButton type="submit" appearance="primary" class="mt-5">
-    Iniciar sesión
+  <div class="mt-5">
+    <tui-input-phone-international
+      formControlName="phone"
+      [countries]="countries"
+      [countryIsoCode]="countryIsoCode"
+    ></tui-input-phone-international>
+    <tui-field-error formControlName="phone"></tui-field-error>
+  </div>
+
+  <div class="mt-5">
+    <tui-select formControlName="program">
+      Programa de interés
+      <ng-template tuiDataList>
+        <tui-data-list>
+          <button
+            tuiOption
+            *ngFor="let program of programs"
+            [value]="program.id"
+          >
+            {{ program.name }}
+          </button>
+        </tui-data-list>
+      </ng-template>
+    </tui-select>
+    <tui-field-error formControlName="program"></tui-field-error>
+  </div>
+
+  <div class="mt-5">
+    <tui-text-area formControlName="comment" [expandable]="true" [rows]="10">
+      Comentario
+    </tui-text-area>
+  </div>
+
+  <button
+    tuiButton
+    type="submit"
+    appearance="primary"
+    icon="tuiIconUser"
+    class="mt-5"
+  >
+    Registrar
   </button>
-  <!-- /button -->
 </form>
-<!-- /form -->

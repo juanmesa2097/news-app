@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserActions } from './user.actions';
 import { User } from './user.model';
@@ -20,6 +20,11 @@ interface UserStateModel {
 @Injectable()
 export class UserState {
   constructor(private userService: UserService) {}
+
+  @Selector()
+  static loading({ loading }: UserStateModel): boolean {
+    return loading;
+  }
 
   @Action(UserActions.Add)
   add(

@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { ProgramsActions } from '@app/store/programs/programs.actions';
+import { Program } from '@app/store/programs/programs.model';
+import { ProgramsState } from '@app/store/programs/programs.state';
+import { UserState } from '@app/store/user/user.state';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { NewsState } from 'src/app/store/state/news.state';
 
 @Component({
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  @Select(NewsState.loading) loading$!: Observable<boolean>;
+  @Select(UserState.loading) loading$!: Observable<boolean>;
 
-  constructor() {}
+  @Select(ProgramsState.getPrograms) programs$!: Observable<Program[]>;
 
-  ngOnInit(): void {}
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(new ProgramsActions.Get());
+  }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsActions } from '@app/store/news/news.actions';
+import { News } from '@app/store/news/news.model';
+import { NewsState } from '@app/store/news/news.state';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { News } from 'src/app/store/state/news.model';
-import { NewsState } from 'src/app/store/state/news.state';
 
 @Component({
   templateUrl: './home.page.html',
