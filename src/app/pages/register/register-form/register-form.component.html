@@ -1,25 +1,26 @@
 <form [formGroup]="formData" (ngSubmit)="onSubmit()">
   <div class="mt-5">
-    <tui-input formControlName="name">
+    <tui-input formControlName="name" icon="tuiIconUser">
       Nombre <span class="tui-required"></span>
     </tui-input>
     <tui-field-error formControlName="name"></tui-field-error>
   </div>
 
   <div class="mt-5">
-    <tui-input formControlName="familyName">
+    <tui-input formControlName="familyName" icon="tuiIconUser">
       Apellido <span class="tui-required"></span>
     </tui-input>
     <tui-field-error formControlName="familyName"></tui-field-error>
   </div>
 
   <div class="mt-5">
-    <tui-input formControlName="email"> Email </tui-input>
+    <tui-input formControlName="email" icon="tuiIconMail"> Email </tui-input>
     <tui-field-error formControlName="email"></tui-field-error>
   </div>
 
   <div class="mt-5">
     <tui-input-phone-international
+      class="input"
       formControlName="phone"
       [countries]="countries"
       [countryIsoCode]="countryIsoCode"
@@ -55,7 +56,7 @@
     tuiButton
     type="submit"
     appearance="primary"
-    icon="tuiIconUser"
+    [disabled]="formData.invalid"
     class="mt-5"
   >
     Registrar

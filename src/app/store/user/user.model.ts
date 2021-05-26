@@ -3,6 +3,6 @@ export interface User {
   familyName: string;
   email: string;
   phone: string;
-  program: number;
+  program: string;
   comment: string;
 }

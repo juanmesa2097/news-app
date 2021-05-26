@@ -33,7 +33,7 @@ export class UserState {
   ) {
     patchState({ loading: true });
 
-    this.userService.add(payload).pipe(
+    return this.userService.add(payload).pipe(
       tap((user) => {
         console.log(user);
         patchState({ user: payload, loading: false });

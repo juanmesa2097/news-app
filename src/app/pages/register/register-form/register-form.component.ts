@@ -1,13 +1,10 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validateForm } from '@app/core/utils/validator.utils';
@@ -21,7 +18,7 @@ import { TuiCountryIsoCode } from '@taiga-ui/kit/components/input-phone-internat
   styleUrls: ['./register-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterFormComponent implements OnInit, OnChanges {
+export class RegisterFormComponent implements OnInit {
   @Input() programs!: Program[];
 
   @Output() register = new EventEmitter<User>();
@@ -44,7 +41,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
 
   countryIsoCode = TuiCountryIsoCode.CO;
 
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
+  constructor(private fb: FormBuilder) {
     this.formData = this.fb.group({
       name: [null, [Validators.required]],
       familyName: [null, [Validators.required]],
@@ -53,18 +50,13 @@ export class RegisterFormComponent implements OnInit, OnChanges {
         null,
         [
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(10),
+          Validators.minLength(13),
+          Validators.maxLength(13),
         ],
       ],
       program: [null, Validators.required],
       comment: [null],
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // this.programs = changes.programs.currentValue;
-    // this.cdr.detectChanges();
   }
 
   ngOnInit(): void {}
@@ -75,7 +67,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     validateForm(this.formData);
 
     if (valid) {
-      this.register.emit(value);
+      this.register.emit({ ...value, program: value.program.toString() });
     }
   }
 }

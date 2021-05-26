@@ -11,6 +11,7 @@
     <div class="max-w-xl mx-auto">
       <app-register-form
         [programs]="(programs$ | async) || []"
+        (register)="onRegister($event)"
       ></app-register-form>
     </div>
   </tui-loader>
