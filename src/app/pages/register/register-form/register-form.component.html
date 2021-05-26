@@ -14,7 +14,9 @@
   </div>
 
   <div class="mt-5">
-    <tui-input formControlName="email" icon="tuiIconMail"> Email </tui-input>
+    <tui-input formControlName="email" icon="tuiIconMail">
+      Email <span class="tui-required"></span>
+    </tui-input>
     <tui-field-error formControlName="email"></tui-field-error>
   </div>
 
@@ -30,7 +32,7 @@
 
   <div class="mt-5">
     <tui-select formControlName="program">
-      Programa de interés
+      Programa de interés <span class="tui-required"></span>
       <ng-template tuiDataList>
         <tui-data-list>
           <button
