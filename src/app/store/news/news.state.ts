@@ -33,7 +33,7 @@ export class NewsState {
   }
 
   @Action(NewsActions.Get)
-  add({ patchState }: StateContext<NewsStateModel>): Observable<News[]> {
+  get({ patchState }: StateContext<NewsStateModel>): Observable<News[]> {
     patchState({ loading: true });
 
     return this.newsService

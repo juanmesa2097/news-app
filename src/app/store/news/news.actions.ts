@@ -1,6 +1,6 @@
 export namespace NewsActions {
   enum ActionType {
-    Get = '[News] Get all news',
+    Get = '[News] Get news',
   }
 
   export class Get {

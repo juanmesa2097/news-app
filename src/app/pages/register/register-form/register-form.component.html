@@ -1,0 +1,19 @@
+<!-- form -->
+<form [formGroup]="formData" (ngSubmit)="onSubmit()">
+  <!-- field -->
+  <div class="mt-5">
+    <tui-input formControlName="email">
+      Email
+      <span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error formControlName="email"></tui-field-error>
+  </div>
+  <!-- /field -->
+
+  <!-- button -->
+  <button tuiButton type="submit" appearance="primary" class="mt-5">
+    Iniciar sesión
+  </button>
+  <!-- /button -->
+</form>
+<!-- /form -->

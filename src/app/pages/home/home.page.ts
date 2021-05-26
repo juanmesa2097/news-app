@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsActions } from '@app/store/news/news.actions';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { NewsActions } from 'src/app/store/state/news.actions';
 import { News } from 'src/app/store/state/news.model';
 import { NewsState } from 'src/app/store/state/news.state';
 

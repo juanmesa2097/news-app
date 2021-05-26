@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NewsActions } from '@app/store/news/news.actions';
+import { News } from '@app/store/news/news.model';
+import { NewsState } from '@app/store/news/news.state';
 import { Store } from '@ngxs/store';
 import { filter, map, switchMap } from 'rxjs/operators';
-import { NewsActions } from 'src/app/store/state/news.actions';
-import { News } from 'src/app/store/state/news.model';
-import { NewsState } from 'src/app/store/state/news.state';
 
 @Component({
   templateUrl: './news.page.html',
