@@ -1,4 +1,13 @@
+:root {
+  --tui-heading-font: theme("fontFamily.display") !important;
+  --tui-text-font: theme("fontFamily.body") !important;
+}
+
 html {
   @apply font-body;
   @apply font-light;
+}
+
+body {
+  font-size: theme("fontSize.base");
 }

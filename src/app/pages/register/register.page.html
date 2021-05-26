@@ -1,0 +1,20 @@
+<app-page-header-wrapper>
+  <h1 class="mb-6 text-3xl text-white md:text-6xl">Registro</h1>
+</app-page-header-wrapper>
+
+<app-page-content-wrapper>
+  <tui-breadcrumbs [items]="breadcrumbs"></tui-breadcrumbs>
+
+  <tui-loader
+    [overlay]="true"
+    size="xxl"
+    [showLoader]="(loading$ | async) || false"
+  >
+    <div class="max-w-xl mx-auto">
+      <app-register-form
+        [programs]="(programs$ | async) || []"
+        (register)="onRegister($event)"
+      ></app-register-form>
+    </div>
+  </tui-loader>
+</app-page-content-wrapper>

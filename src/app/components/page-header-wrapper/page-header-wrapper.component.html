@@ -1,0 +1,8 @@
+<div
+  class="flex w-full mb-16 bg-center bg-no-repeat bg-cover  h-96 bg-gradient-to-br from-blue-800 to-green-400"
+  [ngStyle]="imgSrc ? { 'background-image': 'url(' + imgSrc + ')' } : null"
+>
+  <div class="container mt-12">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<app-page-header-wrapper
+  *ngIf="currentNews?.id"
+  [imgSrc]="'https://picsum.photos/id/' + currentNews?.id + 14 + '/2000/2000'"
+>
+  <h1 class="mb-6 text-4xl text-white md:text-6xl">Noticias</h1>
+</app-page-header-wrapper>
+
+<app-page-content-wrapper>
+  <tui-breadcrumbs [items]="breadcrumbs"></tui-breadcrumbs>
+
+  <main class="mt-12">
+    <section class="max-w-4xl mx-auto">
+      <article class="mx-auto prose lg:prose-lg">
+        <h1>{{currentNews?.title}}</h1>
+
+        <p [innerHTML]="currentNews?.body"></p>
+      </article>
+    </section>
+  </main>
+</app-page-content-wrapper>
+
+<section class="container mx-auto mt-16">
+  <h2>📰 Otras noticias</h2>
+  <app-news-list [data]="otherNews" [spanFirstItem]="false"></app-news-list>
+</section>
