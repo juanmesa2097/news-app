@@ -1,5 +1,8 @@
 <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-  <article *ngFor="let news of data; let first = first">
+  <article
+    *ngFor="let news of data; let first = first"
+    [ngClass]="{ 'col-span-2': first }"
+  >
     <img
       [src]="'https://picsum.photos/id/' + news.id + 14 + '/600/600'"
       alt="Image placeholder"

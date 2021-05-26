@@ -1,3 +1,8 @@
-<a [routerLink]="navigateTo" class="text-gray-800 hover:text-gray-600">
+<a
+  [routerLink]="navigateTo"
+  routerLinkActive="text-blue-500"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="text-gray-800 hover:text-gray-600 font-semibold"
+>
   {{ name }}
 </a>
