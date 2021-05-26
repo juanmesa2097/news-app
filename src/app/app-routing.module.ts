@@ -19,7 +19,7 @@ const routes: Routes = [
       import('./pages/register/register.module').then((m) => m.RegisterModule),
   },
   {
-    path: PathName.New,
+    path: PathName.News,
     loadChildren: () =>
       import('./pages/news/news.module').then((m) => m.NewsModule),
   },

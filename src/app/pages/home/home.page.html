@@ -5,10 +5,14 @@
 <app-page-content-wrapper>
   <main>
     <section>
-      <span> {{loading$ | async}} </span>
-      <pre>
-        {{news$ | async | json}}
-      </pre>
+      <h1>⭐ Noticias destacadas</h1>
+      <tui-loader
+        [overlay]="true"
+        size="xxl"
+        [showLoader]="(loading$ | async) || false"
+      >
+        <app-news-list [data]="(news$ | async) || []"></app-news-list>
+      </tui-loader>
     </section>
   </main>
 </app-page-content-wrapper>
