@@ -7,6 +7,7 @@ import {
   TuiLoaderModule,
   TuiNotificationModule,
 } from '@taiga-ui/core';
+import { TuiBreadcrumbsModule } from '@taiga-ui/kit/components/breadcrumbs';
 import { TuiFieldErrorModule } from '@taiga-ui/kit/components/field-error';
 import { TuiInputModule } from '@taiga-ui/kit/components/input';
 import { TuiInputPhoneInternationalModule } from '@taiga-ui/kit/components/input-phone-international';
@@ -35,6 +36,7 @@ import { RegisterPage } from './register.page';
     TuiLoaderModule,
     TuiNotificationModule,
     TuiInputPhoneInternationalModule,
+    TuiBreadcrumbsModule,
   ],
 })
 export class RegisterModule {}

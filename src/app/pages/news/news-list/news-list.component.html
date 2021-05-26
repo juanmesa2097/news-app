@@ -3,28 +3,29 @@
 >
   <article
     *ngFor="let news of data; let first = first"
-    [ngClass]="{ 'lg:col-span-2': first }"
+    [ngClass]="{ 'lg:col-span-2': first && spanFirstItem }"
   >
     <img
-      [src]="'https://picsum.photos/id/' + news.id + 14 + '/600/600'"
+      [src]="'https://picsum.photos/id/' + news?.id + 14 + '/600/600'"
       alt="Image placeholder"
       class="object-cover object-center w-full shadow-2xl h-60 rounded-2xl"
+      loading="lazy"
     />
 
     <span class="block mt-6 mb-4 font-semibold text-blue-400">
       Ciencia y tecnología
     </span>
 
-    <h3 class="line-clamp-1">{{ news.title }}</h3>
+    <h3 class="line-clamp-1">{{ news?.title }}</h3>
 
-    <p class="mb-4 line-clamp-3" [innerHTML]="news.body"></p>
+    <p class="mb-4 line-clamp-3" [innerHTML]="news?.body"></p>
 
     <a
       tuiButton
       type="button"
       appearance="secondary"
       size="m"
-      [routerLink]="['/', pathName.News, news.id]"
+      [routerLink]="['/', pathName.News, news?.id]"
     >
       Ver noticia
     </a>

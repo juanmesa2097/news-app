@@ -1,41 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NewsActions } from '@app/store/news/news.actions';
 import { News } from '@app/store/news/news.model';
-import { NewsState } from '@app/store/news/news.state';
 import { Store } from '@ngxs/store';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   templateUrl: './news.page.html',
   styleUrls: ['./news.page.scss'],
 })
-export class NewsPage implements OnInit {
-  news!: News;
+export class NewsPage implements OnInit, OnDestroy {
+  destroy$ = new Subject();
 
+  currentNews!: News | null;
   newsId!: string;
+  otherNews!: News[];
 
-  constructor(private activatedRoute: ActivatedRoute, private store: Store) {
-    const params = this.activatedRoute.snapshot.paramMap;
+  breadcrumbs = [];
 
-    this.newsId = params.get('id') || '';
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private store: Store
+  ) {
+    this.breadcrumbs = activatedRoute.snapshot.data.breadcrumbs;
   }
 
   ngOnInit(): void {
-    if (!this.newsId) return;
+    this.activatedRoute.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params) => {
+        this.newsId = params['id'];
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
-    this.store
-      .select<News[]>(NewsState.getNews)
-      .pipe(
-        switchMap((news: News[]) => {
-          if (news.length) return news;
+        this.store
+          .dispatch(new NewsActions.Get())
+          .pipe(
+            map((state) => {
+              const news: News[] = state.news.news;
 
-          return this.store
-            .dispatch(new NewsActions.Get())
-            .pipe(map((state) => state.news));
-        }),
-        filter((news: News) => news.id === this.newsId)
-      )
-      .subscribe((news) => (this.news = news));
+              return {
+                currentNews: news.find((n) => n.id === this.newsId) || null,
+                otherNews: news.filter((n) => n.id !== this.newsId),
+              };
+            })
+          )
+          .subscribe(({ currentNews, otherNews }) => {
+            this.currentNews = currentNews;
+            this.otherNews = otherNews;
+          });
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.complete();
+    this.destroy$.unsubscribe();
   }
 }

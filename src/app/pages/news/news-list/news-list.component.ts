@@ -15,6 +15,7 @@ import { PathName } from 'src/app/core/enums/path-name.enum';
 })
 export class NewsListComponent implements OnInit {
   @Input() data!: News[];
+  @Input() spanFirstItem = true;
 
   pathName = PathName;
 

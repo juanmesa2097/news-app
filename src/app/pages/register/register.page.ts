@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProgramsActions } from '@app/store/programs/programs.actions';
 import { Program } from '@app/store/programs/programs.model';
 import { ProgramsState } from '@app/store/programs/programs.state';
@@ -18,10 +19,16 @@ export class RegisterPage implements OnInit {
 
   @Select(ProgramsState.getPrograms) programs$!: Observable<Program[]>;
 
+  breadcrumbs = [];
+
   constructor(
+    private activatedRoute: ActivatedRoute,
     private store: Store,
     private notificationsService: TuiNotificationsService
-  ) {}
+  ) {
+    const { data } = this.activatedRoute.snapshot;
+    this.breadcrumbs = data.breadcrumbs;
+  }
 
   ngOnInit(): void {
     this.store.dispatch(new ProgramsActions.Get());
