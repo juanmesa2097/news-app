@@ -23,18 +23,6 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() register = new EventEmitter<User>();
 
-  s = [
-    { id: 2020, name: 'Ingeniería de sistemas' },
-    { id: 2050, name: 'Ingeniería electrónica' },
-    { id: 2075, name: 'Ingeniería Industrial' },
-    { id: 2075, name: 'Ingeniería Industrial' },
-    { id: 2075, name: 'Ingeniería Industrial' },
-    { id: 2090, name: 'Psicología' },
-    { id: 2025, name: 'Comunicaciones' },
-    { id: 2025, name: 'Comunicaciones' },
-    { id: 2090, name: 'Psicología' },
-  ];
-
   formData!: FormGroup;
 
   readonly countries: ReadonlyArray<TuiCountryIsoCode> = [TuiCountryIsoCode.CO];
